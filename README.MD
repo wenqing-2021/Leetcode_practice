@@ -8,6 +8,8 @@
 
 ### 1.3 BinaryTree
 
+### 1.4 String
+
 ## 2. Algorithmn
 
 ### 2.1 DP
@@ -22,13 +24,15 @@
     1. 首先写递归函数进行迭代
     2. 然后写递归的计算部分
 
-### 2.3 DFS
+### 2.3 DFS\BFS\DP
 
 ### 2.4 Greedy
 
 ### 2.5 BisectionMethod (二分法)
 
 ### 2.6 Backtracking (回溯)
+
+### 2.7 Sort(全排列、快速排列)
 
 
 ## 3. 机考C++常见的输入输出
