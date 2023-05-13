@@ -20,7 +20,8 @@ struct ListNode {
 class Solution {
 public:
     ListNode *reverseBetween(ListNode *head, int left, int right) {
-        ListNode *dummy = new ListNode(0, head), *p0 = dummy;
+        ListNode *dummy = new ListNode(0, head);
+        ListNode *p0 = dummy;
         for (int i = 0; i < left - 1; ++i)
             p0 = p0->next;
 
