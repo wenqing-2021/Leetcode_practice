@@ -61,6 +61,14 @@
 
 ### 2.3 DFS\BFS\DP
 
++ DP（动态规划）解题思路：
+1. 确定子问题
+2. 找到递推关系式
+
+	+ 相关例题：
+	1. fibnacci数列
+	2. 剪绳子、青蛙跳
+
 ### 2.4 Greedy
 
 ### 2.5 BisectionMethod (二分法)
@@ -79,12 +87,72 @@
 + 作出选择，调用递归
 + 撤销选择，复位
 
+常见模板：
+```c++
+void backtrack(vector<int>& num, int& target, vector<bool>& used){
+	// 首先写终止条件
+	if (xxxxxx) return;
+	
+	/*
+	接下来写递归算法，递归算法可能涉及到循环。used_vector的变化
+	*/
+	// 字符串排列：
+	for(int i=0;i<s.size();i++){
+		if(!used[i])
+		{
+			if(i>=1&&s[i-1]==s[i]&&!used[i-1])//判重剪枝
+				continue;
+			// 作出选择
+			path.push_back(s[i]);
+			used[i]=true;
+			// 递归
+			backtrack(s,path,used);
+			// 复位
+			used[i]=false;
+			path.pop_back();
+		}   
+	}
+	// 二叉树路径
+	path.push_back(root->val);
+	if (target == root->val && !root->left && !root->right){
+		res.push_back(path);
+	}
+	target -= root->val;
+	recur(root->left, target);
+	recur(root->right, target);
+	path.pop_back();
+}
+```
+
 例题：
 + 在二叉树中找到和为给定值的路径
++ 字符串排列
 
 ### 2.7 Sort(全排列、快速排列)
 
-+ 全排列：给定一个数组，返回所有的排列的可能性。
++ 全排列：给定一个数组，返回所有的排列的可能性。【本质是回溯算法】
+
++ 快排模板：
+```c++
+void quickSort(vector<int>& arr, int l, int r) {
+	// 子数组长度为 1 时终止递归
+	if (l >= r) return;
+	// 哨兵划分操作（以 arr[l] 作为基准数）
+	int i = l, j = r;
+	while (i < j) {
+		// 在右侧找到比基准小的，左侧找到比基准大的，然后交换
+		// 括号里里面写判断条件，这里arr[l]作为基准，i<j这个条件必须要有
+		while (i < j && arr[j] >= arr[l]) j--;
+		while (i < j && arr[i] <= arr[l]) i++;
+		swap(arr[i], arr[j]);
+	}
+	// 交换基准数
+	swap(arr[i], arr[l]);
+	// 递归左（右）子数组执行哨兵划分
+	quickSort(arr, l, i - 1);
+	quickSort(arr, i + 1, r);
+    }
+```
 
 ### 2.8 Dynamic Window(滑动窗口)
 
