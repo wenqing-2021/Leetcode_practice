@@ -22,6 +22,8 @@
 
 ### 1.3 BinaryTree
 
++ 二叉树的遍历。层序遍历用queue存储。
+
 ### 1.4 String
 
 ## 2. Algorithmn
