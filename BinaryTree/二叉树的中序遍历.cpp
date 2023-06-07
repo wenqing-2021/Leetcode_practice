@@ -1,76 +1,41 @@
-/*
-// Definition for a Node.
-class Node {
-public:
-    int val;
-    Node* left;
-    Node* right;
 
-    Node() {}
-
-    Node(int _val) {
-        val = _val;
-        left = NULL;
-        right = NULL;
-    }
-
-    Node(int _val, Node* _left, Node* _right) {
-        val = _val;
-        left = _left;
-        right = _right;
-    }
-};
-*/
 #include <vector>
-#include <iostream>
 using namespace std;
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 
-class Node {
-public:
+struct TreeNode {
     int val;
-    Node* left;
-    Node* right;
-
-    Node() {}
-
-    Node(int _val) {
-        val = _val;
-        left = NULL;
-        right = NULL;
-    }
-
-    Node(int _val, Node* _left, Node* _right) {
-        val = _val;
-        left = _left;
-        right = _right;
-    }
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
 class Solution {
 public:
-    Node* pre = NULL;
-    Node* head = NULL;
-    Node* treeToDoublyList(Node* root) {
-        if (!root) return root;
-        // 中序遍历
-        dfs(root);
-        head->left = pre;
-        pre->right = head;
-
-        return head;
-
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        dfs(root, res);
+        return res;
     }
-    void dfs(Node* root){
-        if (!root) return;
-        dfs(root->left);
-        if (pre){
-            pre->right = root;
+    void dfs(TreeNode* root, vector<int>& res){
+        // terminal condition
+        if (root == nullptr){
+            return;
         }
-        else{
-            head = root;
-        }
-        root->left = pre;
-        pre = root;
-        dfs(root->right);
+        dfs(root->left, res);
+        res.emplace_back(root->val);
+        dfs(root->right, res);
     }
 };
