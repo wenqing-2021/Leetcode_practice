@@ -33,12 +33,15 @@ public:
 
 int main(){
 
-    int a = 6;
-    int b = -6;
+    vector<int> test_vec = {1,3,3,4,5,1,2,5};
 
-    int k = a & (b);
+    Solution s1;
 
-    cout << k << endl; 
+    vector<int> res = s1.singleNumbers(test_vec);
+
+    for (auto& num : res){
+        cout << num << endl;
+    }
 
     return 0;
 
