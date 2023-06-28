@@ -32,45 +32,13 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if (root == nullptr) return nullptr;
-        if (root->val == p->val || root->val == q->val){
-            return root;
-        }
-        if (root->left != nullptr){
-            bool p_left = isInTree(root->left, p);
-            bool q_left = isInTree(root->left, q);
-            if (p_left && q_left){
-                return lowestCommonAncestor(root->left, p, q);
-            }
-            
-            return root;
-        }
-        if (root->right != nullptr){
-            bool p_right = isInTree(root->right, p);
-            bool q_right = isInTree(root->right, q);
-            if (p_right && q_right){
-                return lowestCommonAncestor(root->right, p, q);
-            }
-            
-            return root;
-        }
-
-        return nullptr;
+        if(root == nullptr || root == p || root == q) return root;
+        TreeNode *left = lowestCommonAncestor(root->left, p, q);
+        TreeNode *right = lowestCommonAncestor(root->right, p, q);
+        if(left == nullptr) return right;
+        if(right == nullptr) return left;
+        return root;
     }
-    bool isInTree(TreeNode* root, TreeNode* node){
-        if (root == nullptr) return false;
-        if (node->val == root->val) return true;
-        bool inleft = false, inright = false;
-        if (root->left != nullptr){
-            inleft = isInTree(root->left, node);
-        }
-        if (root->right != nullptr){
-            inright = isInTree(root->right, node);
-        }
-
-        return inleft || inright;
-    }
-
 };
 
 int main(){
