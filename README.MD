@@ -255,6 +255,47 @@ void quickSort(vector<int>& arr, int l, int r) {
 
 要点为如何计算窗口的长度、起点，窗口移动条件。
 
+相关题：
+
+3. 无重复字符的最长子串
+```c++
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.size() == 0) return 0;
+        unordered_set<char> lookup;
+        int maxStr = 0;
+        int left = 0;
+        for(int i = 0; i < s.size(); i++){
+            while (lookup.find(s[i]) != lookup.end()){
+                lookup.erase(s[left]);
+                left ++;
+            }
+            maxStr = max(maxStr,i-left+1);
+            lookup.insert(s[i]);
+    }
+        return maxStr;
+        
+    }
+};
+```
+
+30. 串联所有单词的子串
+
+76. 最小覆盖子串
+
+159. 至多包含两个不同字符的最长子串
+
+209. 长度最小的子数组
+
+239. 滑动窗口最大值
+
+567. 字符串的排列
+
+632. 最小区间
+
+727. 最小窗口子序列
+
 ## 3. 机考C++常见的输入输出
 
 ### 3.1 input
