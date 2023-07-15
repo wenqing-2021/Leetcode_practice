@@ -154,6 +154,33 @@ while (i <= j){
 }
 ```
 
+```C++
+// 模板1 (找开始的位置)
+int bsearch_1(int l, int r)
+{
+    while (l < r)
+    {
+        int mid = (l + r)/2;
+        if (check(mid)) r = mid;
+        else l = mid + 1;
+    }
+ 
+   return l;
+}
+
+// 模板2 （找结束的位置）
+int bsearch_2(int l, int r)
+{
+    while (l < r)
+    {
+        int mid = ( l + r + 1 ) /2;
+        if (check(mid)) l = mid;
+        else r = mid - 1;
+    }
+    return l;
+}
+```
+
 ### 2.6 Backtracking (回溯)
 
 回溯可以解决的问题：子集、组合、全排列、搜索。回溯的目的：在递归的时候，返回i到之前的状态（可以理解为二叉树返回上一层，获得其他可能的trajectory）
