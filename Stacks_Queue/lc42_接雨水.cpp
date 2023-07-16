@@ -19,6 +19,7 @@ public:
                 if (st.empty()) break;
                 int left = st.top();
                 int right = i;
+                // 比较左右区间哪个高
                 int h = min(height[left], height[right]) - height[current];
                 int width = right - left - 1;
                 area += width * h;
