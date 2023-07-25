@@ -101,17 +101,7 @@
 
 ### 2.1 DP
 
-+ 找到迭代公式。
-+ 找到初始值。
-
-+ 剑指offer分类：
-
-	+ 面试题10：斐波那契数列
-	+ 面试题14：剪绳子
-	+ 面试题42：连续子数组的最大和
-	+ 面试题46：把数字翻译成字符串
-	+ 面试题47：礼物的最大价值
-	+ 面试题48：最长不含重复字符的子字符串
+详见：[动态规划专题](./docs/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%93%E9%A2%98.md)
 
 ### 2.2 Recursion
 
@@ -154,65 +144,36 @@ while (i <= j){
 }
 ```
 
-### 2.6 Backtracking (回溯)
+```C++
+// 模板1 (找开始的位置)
+int bsearch_1(int l, int r)
+{
+    while (l < r)
+    {
+        int mid = (l + r)/2;
+        if (check(mid)) r = mid;
+        else l = mid + 1;
+    }
+ 
+   return l;
+}
 
-回溯可以解决的问题：子集、组合、全排列、搜索。回溯的目的：在递归的时候，返回i到之前的状态（可以理解为二叉树返回上一层，获得其他可能的trajectory）
-
-如何写回溯：
-+ 画递归树，找状态变量【需要回溯的参数】
-+ 确定结束条件
-+ 找到选择列表【回溯参数】
-+ 判断是否需要剪枝
-+ 作出选择，调用递归
-+ 撤销选择，复位
-
-+ 剑指offer分类：
-
-+ 面试题12：矩阵中的路径
-+ 2.4 位运算
-+ 面试题15：二进制中1的个数
-+ 面试题56：数组中数字出现的次数
-
-常见模板：
-```c++
-void backtrack(vector<int>& num, int& target, vector<bool>& used){
-	// 首先写终止条件
-	if (xxxxxx) return;
-	
-	/*
-	接下来写递归算法，递归算法可能涉及到循环。used_vector的变化
-	*/
-	// 字符串排列：
-	for(int i=0;i<s.size();i++){
-		if(!used[i])
-		{
-			if(i>=1&&s[i-1]==s[i]&&!used[i-1])//判重剪枝
-				continue;
-			// 作出选择
-			path.push_back(s[i]);
-			used[i]=true;
-			// 递归
-			backtrack(s,path,used);
-			// 复位
-			used[i]=false;
-			path.pop_back();
-		}   
-	}
-	// 二叉树路径
-	path.push_back(root->val);
-	if (target == root->val && !root->left && !root->right){
-		res.push_back(path);
-	}
-	target -= root->val;
-	recur(root->left, target);
-	recur(root->right, target);
-	path.pop_back();
+// 模板2 （找结束的位置）
+int bsearch_2(int l, int r)
+{
+    while (l < r)
+    {
+        int mid = ( l + r + 1 ) /2;
+        if (check(mid)) l = mid;
+        else r = mid - 1;
+    }
+    return l;
 }
 ```
 
-例题：
-+ 在二叉树中找到和为给定值的路径
-+ 字符串排列
+### 2.6 Backtracking (回溯)
+
+### [回溯类解法](./docs/%E5%9B%9E%E6%BA%AF-%E7%BB%84%E5%90%88%E6%8E%92%E5%88%97%E7%B1%BB%E9%97%AE%E9%A2%98.md)
 
 ### 2.7 Sort(全排列、快速排列) \ find(查找)
 
