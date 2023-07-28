@@ -113,63 +113,21 @@
     1. 首先写递归函数进行迭代
     2. 然后写递归的计算部分
 
-### 2.3 DFS\BFS\DP
+### 2.3 DFS\BFS
 
-+ DP（动态规划）解题思路：
-1. 确定子问题
-2. 找到递推关系式
+解题关键：找到递归终止条件
 
-	+ 相关例题：
-	1. fibnacci数列
-	2. 剪绳子、青蛙跳
+相关例题：
+
+1. lc200确定岛屿数量
+2. 剑指offer55_二叉树的第k个节点
+3. 机器人运动范围
 
 ### 2.4 Greedy
 
 ### 2.5 BisectionMethod (二分法)
 
-这是一类查找算法，左闭右闭，循环终止条件`while (left <= right) `。迭代更新的`middle -= 1`。
-
-下面介绍二分法【用于查找】的模板
-```c++
-while (i <= j){
-	int mid = i + (j-i) / 2;
-	if (查找条件){
-		// 更新边界1
-		i = mid + 1;
-	}
-	else{
-		// 更新边界2
-		j = mid - 1;
-	}
-}
-```
-
-```C++
-// 模板1 (找开始的位置)
-int bsearch_1(int l, int r)
-{
-    while (l < r)
-    {
-        int mid = (l + r)/2;
-        if (check(mid)) r = mid;
-        else l = mid + 1;
-    }
- 
-   return l;
-}
-
-// 模板2 （找结束的位置）
-int bsearch_2(int l, int r)
-{
-    while (l < r)
-    {
-        int mid = ( l + r + 1 ) /2;
-        if (check(mid)) l = mid;
-        else r = mid - 1;
-    }
-    return l;
-}
-```
+### [二分法详解](./docs/查找-二分法.md)
 
 ### 2.6 Backtracking (回溯)
 
