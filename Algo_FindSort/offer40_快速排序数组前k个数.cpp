@@ -1,5 +1,6 @@
 #include <vector>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
 class Solution {
@@ -29,3 +30,17 @@ private:
         quickSort(arr, i + 1, r);
     }
 };
+
+
+int main(){
+    vector<int> a = {0,0,1,0,2,2,0};
+
+    Solution s1;
+
+    vector<int> res = s1.getLeastNumbers(a, 7);
+
+    for (auto& num : res){
+        std::cout << num << std::endl;
+    }
+
+}
